@@ -45,11 +45,8 @@ public class Partido {
 
     @Override
     public String toString() {
-        return "Partido{" +
-                "id=" + id +
-                ", sigla='" + sigla + '\'' +
-                ", nome='" + nome + '\'' +
-                '}';
+        String showSigla = sigla.equalsIgnoreCase(nome) ? "" : " (" + sigla + ")";
+        return nome + showSigla;
     }
 
 }
