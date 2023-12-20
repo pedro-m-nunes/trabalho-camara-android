@@ -20,16 +20,7 @@ public class ConfigActivity extends AppCompatActivity {
         // nav
         BottomNavigationView bottomNavigation = findViewById(R.id.bottom_navigation_menu);
         bottomNavigation.setSelectedItemId(R.id.nav_config);
-        bottomNavigation.setOnItemSelectedListener(item -> {
-            try {
-                Class<?> activity = BottomNavigationMenu.onItemSelected(item);
-                startActivity(new Intent(getApplicationContext(), activity));
-                finish();
-                return true;
-            } catch (BottomNavigationMenuException e) {
-                return false;
-            }
-        });
+        bottomNavigation.setOnItemSelectedListener(item -> BottomNavigationMenu.listener(this, item));
 
     }
 }

@@ -1,0 +1,4 @@
+- Login e cadastro;
+- Configurações;
+- Mostrar as imagens (se der);
+- Limpar o código (comentários e recursos desnecessários...).

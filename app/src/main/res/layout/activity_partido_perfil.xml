@@ -6,17 +6,18 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".ConfigActivity">
+    tools:context=".PartidoPerfilActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/appbar_partido"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             style="@style/Widget.MaterialComponents.Toolbar.Primary"
-            app:title="@string/title_config"/>
+            app:title="@string/loading"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -26,6 +27,28 @@
         android:layout_weight="1"
         android:orientation="vertical"
         android:gravity="center">
+
+        <TextView
+            android:id="@+id/partido_nome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/loading"
+            />
+
+        <TextView
+            android:id="@+id/partido_sigla"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/loading"
+            />
+
+        <Button
+            android:id="@+id/button_deputados_do_partido"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.Button"
+            android:text="@string/button_deputados_do_partido"
+            />
 
     </LinearLayout>
 

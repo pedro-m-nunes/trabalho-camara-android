@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">CamaraCamera2</string>
+    <string name="app_name">Câmara Câmera</string>
+    <string name="loading">Carregando...</string>
 
     <string name="boas_vindas">Boas-vindas!</string>
     <string name="button_login">Login</string>
@@ -19,4 +20,8 @@
     <string name="title_partidos">Partidos</string>
 
     <string name="title_config">Configurações</string>
+
+    <string name="button_deputados_do_partido">Deputados</string>
+
+    <string name="button_voltar">Voltar</string>
 </resources>

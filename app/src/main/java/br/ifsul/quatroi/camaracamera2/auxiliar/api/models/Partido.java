@@ -10,13 +10,16 @@ public class Partido {
 
     private String nome;
 
+    private String urlLogo;
+
     public Partido() {
     }
 
-    public Partido(Integer id, String sigla, String nome) {
+    public Partido(Integer id, String sigla, String nome, String urlLogo) {
         this.id = id;
         this.sigla = sigla;
         this.nome = nome;
+        this.urlLogo = urlLogo;
     }
 
     public Integer getId() {
@@ -43,10 +46,25 @@ public class Partido {
         this.nome = nome;
     }
 
+    public String getUrlLogo() {
+        return urlLogo;
+    }
+
+    public void setUrlLogo(String urlLogo) {
+        this.urlLogo = urlLogo;
+    }
+
     @Override
     public String toString() {
         String showSigla = sigla.equalsIgnoreCase(nome) ? "" : " (" + sigla + ")";
         return nome + showSigla;
+    }
+
+    public void set(Partido partido) {
+        id = partido.id;
+        sigla = partido.sigla;
+        nome = partido.nome;
+        urlLogo = partido.urlLogo;
     }
 
 }

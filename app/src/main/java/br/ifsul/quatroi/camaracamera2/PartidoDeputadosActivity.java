@@ -3,14 +3,12 @@ package br.ifsul.quatroi.camaracamera2;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
@@ -20,45 +18,48 @@ import br.ifsul.quatroi.camaracamera2.auxiliar.IntentExtraNames;
 import br.ifsul.quatroi.camaracamera2.auxiliar.Toaster;
 import br.ifsul.quatroi.camaracamera2.auxiliar.api.APICaller;
 import br.ifsul.quatroi.camaracamera2.auxiliar.api.CallbackData;
+import br.ifsul.quatroi.camaracamera2.auxiliar.api.models.Deputado;
 import br.ifsul.quatroi.camaracamera2.auxiliar.api.models.Partido;
-import br.ifsul.quatroi.camaracamera2.auxiliar.exceptions.BottomNavigationMenuException;
 
-public class MainActivity extends AppCompatActivity { // Home/Partidos
+public class PartidoDeputadosActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        // if not logged in
-//        startActivity(new Intent(getApplicationContext(), StartActivity.class));
-//        finish();
-        // else
+        setContentView(R.layout.activity_partido_deputados);
 
         // nav
         BottomNavigationView bottomNavigation = findViewById(R.id.bottom_navigation_menu);
-        bottomNavigation.setSelectedItemId(R.id.nav_partidos);
         bottomNavigation.setOnItemSelectedListener(item -> BottomNavigationMenu.listener(this, item));
 
-        // list
-        ListView partidos = findViewById(R.id.list_partidos);
-        ArrayAdapter<Partido> partidosAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1);
-        partidos.setAdapter(partidosAdapter);
+        // appbar
+        MaterialToolbar appbar = findViewById(R.id.appbar_deputados_do_partido);
+        final String partidoSigla = getIntent().getStringExtra(IntentExtraNames.PARTIDO_SIGLA);
+        appbar.setTitle("Deputados(as) do " + partidoSigla);
 
-        partidos.setOnItemClickListener((adapterView, view, i, l) -> {
-            Intent intent = new Intent(getApplicationContext(), PartidoPerfilActivity.class);
-            intent.putExtra(IntentExtraNames.PARTIDO_ID, partidosAdapter.getItem(i).getId());
+        // list
+        ListView deputados = findViewById(R.id.list_deputados_partido);
+        ArrayAdapter<Deputado> deputadosAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1);
+        deputados.setAdapter(deputadosAdapter);
+
+        final int partidoId = getIntent().getIntExtra(IntentExtraNames.PARTIDO_ID, 0);
+
+        deputados.setOnItemClickListener((adapterView, view, i, l) -> {
+            Intent intent = new Intent(getApplicationContext(), DeputadoPerfilActivity.class);
+            intent.putExtra(IntentExtraNames.DEPUTADO_ID, deputadosAdapter.getItem(i).getId());
+            intent.putExtra(IntentExtraNames.PARTIDO_ID, partidoId);
+            intent.putExtra(IntentExtraNames.PARTIDO_SIGLA, partidoSigla);
             startActivity(intent);
             finish();
         });
 
         // api
         APICaller apiCaller = new APICaller();
-        apiCaller.getAllPartidos(new CallbackData<>() {
+        apiCaller.getDeputadosByPartido(partidoId, new CallbackData<>() {
             @Override
-            public void onSuccess(List<Partido> data) {
-                partidosAdapter.clear();
-                partidosAdapter.addAll(data);
+            public void onSuccess(List<Deputado> data) {
+                deputadosAdapter.clear();
+                deputadosAdapter.addAll(data);
             }
 
             @Override

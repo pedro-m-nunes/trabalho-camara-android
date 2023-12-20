@@ -6,28 +6,27 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".ConfigActivity">
+    tools:context=".PartidoDeputadosActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/appbar_deputados_do_partido"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             style="@style/Widget.MaterialComponents.Toolbar.Primary"
-            app:title="@string/title_config"/>
+            app:title="@string/loading"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <LinearLayout
+    <ListView
+        android:id="@+id/list_deputados_partido"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical"
-        android:gravity="center">
-
-    </LinearLayout>
+        android:layout_weight="1">
+    </ListView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation_menu"

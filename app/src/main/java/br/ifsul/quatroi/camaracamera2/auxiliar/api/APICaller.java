@@ -3,6 +3,7 @@ package br.ifsul.quatroi.camaracamera2.auxiliar.api;
 import java.util.List;
 
 import br.ifsul.quatroi.camaracamera2.auxiliar.api.models.APIResponse;
+import br.ifsul.quatroi.camaracamera2.auxiliar.api.models.Deputado;
 import br.ifsul.quatroi.camaracamera2.auxiliar.api.models.Partido;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -45,25 +46,20 @@ public class APICaller {
     public void getAllPartidos(CallbackData<List<Partido>> callbackData) {
         Call<APIResponse<List<Partido>>> call = apiService.getAllPartidos();
         enqueueCall(call, callbackData);
-
-//        call.enqueue(new Callback<>() {
-//            @Override
-//            public void onResponse(Call<APIResponse<List<Partido>>> call, Response<APIResponse<List<Partido>>> response) {
-//                if(response.isSuccessful())
-//                    callbackData.onSuccess(response.body().getDados());
-//                else
-//                    callbackData.onUnsuccess("Unsuccessful request");
-//            }
-//
-//            @Override
-//            public void onFailure(Call<APIResponse<List<Partido>>> call, Throwable t) {
-//                callbackData.onFailure("Failed request");
-//            }
-//        });
     }
 
-    public void getPartido(int id, CallbackData<Partido> callbackData) { // testar
+    public void getPartido(int id, CallbackData<Partido> callbackData) {
         Call<APIResponse<Partido>> call = apiService.getPartido(id);
+        enqueueCall(call, callbackData);
+    }
+
+    public void getDeputadosByPartido(int partidoId, CallbackData<List<Deputado>> callbackData) {
+        Call<APIResponse<List<Deputado>>> call = apiService.getDeputadosByPartido(partidoId);
+        enqueueCall(call, callbackData);
+    }
+
+    public void getDeputado(int id, CallbackData<Deputado> callbackData) {
+        Call<APIResponse<Deputado>> call = apiService.getDeputado(id);
         enqueueCall(call, callbackData);
     }
 
