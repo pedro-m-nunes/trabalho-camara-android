@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "978189310387",
+    "project_id": "camaracamera2-91db3",
+    "storage_bucket": "camaracamera2-91db3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:978189310387:android:75190400de59b682e493c6",
+        "android_client_info": {
+          "package_name": "br.ifsul.quatroi.camaracamera2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGSjh0Hs2ONJ3XTckBvud4F1LlqJpx3-c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

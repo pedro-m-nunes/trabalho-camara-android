@@ -7,4 +7,7 @@ public interface IntentExtraNames {
 
     String DEPUTADO_ID = "deputadoId";
 
+    String USER_EMAIL = "userEmail";
+    String USER_PASSWORD = "userPassword";
+
 }

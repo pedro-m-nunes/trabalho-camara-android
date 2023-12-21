@@ -10,6 +10,7 @@ import com.google.android.material.textfield.TextInputEditText;
 
 import br.ifsul.quatroi.camaracamera2.auxiliar.Authentication;
 import br.ifsul.quatroi.camaracamera2.auxiliar.InputGetter;
+import br.ifsul.quatroi.camaracamera2.auxiliar.IntentExtraNames;
 import br.ifsul.quatroi.camaracamera2.auxiliar.Toaster;
 import br.ifsul.quatroi.camaracamera2.auxiliar.exceptions.AuthenticationException;
 import br.ifsul.quatroi.camaracamera2.auxiliar.exceptions.InputException;
@@ -24,6 +25,10 @@ public class CadastroActivity extends AppCompatActivity {
         // email
         TextInputEditText email = findViewById(R.id.input_cadastro_user_identification);
 
+        final String passedEmail = getIntent().getStringExtra(IntentExtraNames.USER_EMAIL);
+        if(passedEmail != null)
+            email.setText(passedEmail);
+
         // senha
         TextInputEditText password = findViewById(R.id.input_cadastro_password);
 
@@ -34,23 +39,26 @@ public class CadastroActivity extends AppCompatActivity {
         Button cadastrar = findViewById(R.id.button_cadastrar);
         cadastrar.setOnClickListener(view -> {
             try {
-                Authentication.register(
-                        InputGetter.getInput(email),
-                        InputGetter.getInput(password),
-                        InputGetter.getInput(passwordConfirmation)
-                );
-            } catch (AuthenticationException e) {
-                Toaster.shortToast(getApplicationContext(), e.getMessage()); // temp
-                // ...
+                String stringEmail = InputGetter.getInput(email);
+                String stringPassword = InputGetter.getInput(password);
+                String stringPasswordConfirmation = InputGetter.getInput(passwordConfirmation);
+
+                Authentication.register(this, stringEmail, stringPassword, stringPasswordConfirmation);
             } catch (InputException e) {
                 Toaster.shortToast(getApplicationContext(), "Informe os dados solicitados");
+            } catch (AuthenticationException e) {
+                Toaster.shortToast(getApplicationContext(), e.getMessage());
             }
         });
 
         // login
         Button jaTenhoCadastro = findViewById(R.id.button_ja_tenho_cadastro);
         jaTenhoCadastro.setOnClickListener(view -> {
-            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+            try {
+                intent.putExtra(IntentExtraNames.USER_EMAIL, InputGetter.getInput(email));
+            } catch (InputException e) {}
+            startActivity(intent);
             finish();
         });
 

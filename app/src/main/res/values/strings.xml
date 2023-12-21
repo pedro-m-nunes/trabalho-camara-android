@@ -24,4 +24,6 @@
     <string name="button_deputados_do_partido">Deputados</string>
 
     <string name="button_voltar">Voltar</string>
+
+    <string name="button_logout">Sair</string>
 </resources>
