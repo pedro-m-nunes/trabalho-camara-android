@@ -25,17 +25,14 @@ public class PartidoPerfilActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_partido_perfil);
 
-        // nav
         BottomNavigationView bottomNavigation = findViewById(R.id.bottom_navigation_menu);
         bottomNavigation.setOnItemSelectedListener(item -> BottomNavigationMenu.listener(this, item));
 
-        // appbar
         MaterialToolbar appbar = findViewById(R.id.appbar_partido);
 
         TextView nome = findViewById(R.id.partido_nome);
         TextView sigla = findViewById(R.id.partido_sigla);
 
-        // api
         final int partidoId = getIntent().getIntExtra(IntentExtraNames.PARTIDO_ID, 0);
         Partido partido = new Partido();
 

@@ -28,16 +28,13 @@ public class PartidoDeputadosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_partido_deputados);
 
-        // nav
         BottomNavigationView bottomNavigation = findViewById(R.id.bottom_navigation_menu);
         bottomNavigation.setOnItemSelectedListener(item -> BottomNavigationMenu.listener(this, item));
 
-        // appbar
         MaterialToolbar appbar = findViewById(R.id.appbar_deputados_do_partido);
         final String partidoSigla = getIntent().getStringExtra(IntentExtraNames.PARTIDO_SIGLA);
         appbar.setTitle("Deputados(as) do " + partidoSigla);
 
-        // list
         ListView deputados = findViewById(R.id.list_deputados_partido);
         ArrayAdapter<Deputado> deputadosAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1);
         deputados.setAdapter(deputadosAdapter);
@@ -53,7 +50,6 @@ public class PartidoDeputadosActivity extends AppCompatActivity {
             finish();
         });
 
-        // api
         APICaller apiCaller = new APICaller();
         apiCaller.getDeputadosByPartido(partidoId, new CallbackData<>() {
             @Override

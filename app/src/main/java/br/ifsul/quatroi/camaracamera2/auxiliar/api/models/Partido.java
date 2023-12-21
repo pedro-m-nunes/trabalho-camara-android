@@ -1,7 +1,5 @@
 package br.ifsul.quatroi.camaracamera2.auxiliar.api.models;
 
-import com.google.gson.annotations.Expose;
-
 public class Partido {
 
     private Integer id;

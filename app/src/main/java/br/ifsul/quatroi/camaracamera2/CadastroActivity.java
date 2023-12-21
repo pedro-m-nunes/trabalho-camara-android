@@ -22,20 +22,16 @@ public class CadastroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro);
 
-        // email
         TextInputEditText email = findViewById(R.id.input_cadastro_user_identification);
 
         final String passedEmail = getIntent().getStringExtra(IntentExtraNames.USER_EMAIL);
         if(passedEmail != null)
             email.setText(passedEmail);
 
-        // senha
         TextInputEditText password = findViewById(R.id.input_cadastro_password);
 
-        // confirmar senha
         TextInputEditText passwordConfirmation = findViewById(R.id.input_confirm_password);
 
-        // cadastrar
         Button cadastrar = findViewById(R.id.button_cadastrar);
         cadastrar.setOnClickListener(view -> {
             try {
@@ -51,7 +47,6 @@ public class CadastroActivity extends AppCompatActivity {
             }
         });
 
-        // login
         Button jaTenhoCadastro = findViewById(R.id.button_ja_tenho_cadastro);
         jaTenhoCadastro.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);

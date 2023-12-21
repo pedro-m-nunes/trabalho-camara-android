@@ -7,7 +7,6 @@ import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import br.ifsul.quatroi.camaracamera2.LoginActivity;
 import br.ifsul.quatroi.camaracamera2.MainActivity;
@@ -15,8 +14,6 @@ import br.ifsul.quatroi.camaracamera2.StartActivity;
 import br.ifsul.quatroi.camaracamera2.auxiliar.exceptions.AuthenticationException;
 
 public class Authentication {
-
-     // onStart
 
     public static void login(AppCompatActivity originActivity, String email, String password) {
         Context context = originActivity.getApplicationContext();
@@ -30,7 +27,6 @@ public class Authentication {
                     } else {
                         Exception exception = task.getException();
                         Toaster.longToast(context, exception.getMessage());
-                        Log.e("Auth Error", exception.getMessage(), exception); // temp
                     }
                 });
     }
@@ -61,7 +57,7 @@ public class Authentication {
         }
     }
 
-    public static void register(AppCompatActivity originActivity, String email, String password, String passwordConfirmation) throws AuthenticationException { // ?
+    public static void register(AppCompatActivity originActivity, String email, String password, String passwordConfirmation) throws AuthenticationException {
         if(!password.equals(passwordConfirmation))
             throw new AuthenticationException("A senha não pôde ser confirmada");
         else {
@@ -72,7 +68,7 @@ public class Authentication {
                         if(task.isSuccessful()) {
                             Toaster.shortToast(context, "Usuário cadastrado");
 
-                            FirebaseAuth.getInstance().signOut(); // ?
+                            FirebaseAuth.getInstance().signOut();
 
                             Intent intent = new Intent(context, LoginActivity.class);
                             intent.putExtra(IntentExtraNames.USER_EMAIL, email);
@@ -82,7 +78,6 @@ public class Authentication {
                         } else {
                             Exception exception = task.getException();
                             Toaster.longToast(context, exception.getMessage());
-                            Log.e("Auth Error", exception.getMessage(), exception); // temp
                         }
                     });
         }

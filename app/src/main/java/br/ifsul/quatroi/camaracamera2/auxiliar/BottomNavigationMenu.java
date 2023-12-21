@@ -1,6 +1,5 @@
 package br.ifsul.quatroi.camaracamera2.auxiliar;
 
-import android.content.Context;
 import android.content.Intent;
 import android.view.MenuItem;
 

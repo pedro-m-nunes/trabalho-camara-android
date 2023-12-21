@@ -19,12 +19,10 @@ public class ConfigActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_config);
 
-        // nav
         BottomNavigationView bottomNavigation = findViewById(R.id.bottom_navigation_menu);
         bottomNavigation.setSelectedItemId(R.id.nav_config);
         bottomNavigation.setOnItemSelectedListener(item -> BottomNavigationMenu.listener(this, item));
 
-        // logout
         Button logout = findViewById(R.id.button_logout);
         logout.setOnClickListener(view -> Authentication.logout(this));
 

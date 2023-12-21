@@ -25,11 +25,9 @@ public class DeputadoPerfilActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_deputado_perfil);
 
-        // nav
         BottomNavigationView bottomNavigation = findViewById(R.id.bottom_navigation_menu);
         bottomNavigation.setOnItemSelectedListener(item -> BottomNavigationMenu.listener(this, item));
 
-        // appbar
         MaterialToolbar appbar = findViewById(R.id.appbar_deputado);
 
         TextView nome = findViewById(R.id.deputado_nome);
@@ -37,18 +35,13 @@ public class DeputadoPerfilActivity extends AppCompatActivity {
         TextView siglaUf = findViewById(R.id.deputado_sigla_uf);
         TextView email = findViewById(R.id.deputado_email);
 
-        // api
         final int deputadoId = getIntent().getIntExtra(IntentExtraNames.DEPUTADO_ID, 0);
         Deputado deputado = new Deputado();
-
-        Log.i("id", String.valueOf(deputadoId)); // .
 
         APICaller apiCaller = new APICaller();
         apiCaller.getDeputado(deputadoId, new CallbackData<>() {
             @Override
             public void onSuccess(Deputado data) {
-                Log.i("data", String.valueOf(data == null)); // .
-
                 deputado.set(data);
                 appbar.setTitle(deputado.getUltimoStatus().getNome());
                 nome.setText("Nome: " + deputado.getUltimoStatus().getNome());

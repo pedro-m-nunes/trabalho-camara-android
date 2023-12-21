@@ -17,6 +17,4 @@ public class InputGetter {
             return editText.getText().toString();
     }
 
-    // validatePassword(?) // ?
-
 }

@@ -30,12 +30,10 @@ public class MainActivity extends AppCompatActivity { // Home/Partidos
         setContentView(R.layout.activity_main);
 
         if(Authentication.checkIfLoggedInAndRedirectToStartIfNot(this)) {
-            // nav
             BottomNavigationView bottomNavigation = findViewById(R.id.bottom_navigation_menu);
             bottomNavigation.setSelectedItemId(R.id.nav_partidos);
             bottomNavigation.setOnItemSelectedListener(item -> BottomNavigationMenu.listener(this, item));
 
-            // list
             ListView partidos = findViewById(R.id.list_partidos);
             ArrayAdapter<Partido> partidosAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1);
             partidos.setAdapter(partidosAdapter);
@@ -47,7 +45,6 @@ public class MainActivity extends AppCompatActivity { // Home/Partidos
                 finish();
             });
 
-            // api
             APICaller apiCaller = new APICaller();
             apiCaller.getAllPartidos(new CallbackData<>() {
                 @Override

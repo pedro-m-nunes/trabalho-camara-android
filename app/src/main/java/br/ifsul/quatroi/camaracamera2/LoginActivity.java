@@ -22,21 +22,18 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         if(!Authentication.checkIfAlreadyLoggedInAndRedirectToContentIfTrue(this)) {
-            // email
             TextInputEditText email = findViewById(R.id.input_user_identification);
 
             final String passedEmail = getIntent().getStringExtra(IntentExtraNames.USER_EMAIL);
             if(passedEmail != null)
                 email.setText(passedEmail);
 
-            // senha
             TextInputEditText password = findViewById(R.id.input_password);
 
             final String registeredPassword = getIntent().getStringExtra(IntentExtraNames.USER_PASSWORD);
             if(registeredPassword != null)
                 password.setText(registeredPassword);
 
-            // logar
             Button logar = findViewById(R.id.button_logar);
             logar.setOnClickListener(view -> {
                 try {
@@ -48,7 +45,6 @@ public class LoginActivity extends AppCompatActivity {
                 }
             });
 
-            // cadastro
             Button naoTenhoLogin = findViewById(R.id.button_nao_tenho_login);
             naoTenhoLogin.setOnClickListener(view -> {
                 Intent intent = new Intent(getApplicationContext(), CadastroActivity.class);
